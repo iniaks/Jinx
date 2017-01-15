@@ -48,5 +48,5 @@ export const CURRENCY_PROPS_MAP = {
 	cash_buying_rate: '现钞买入价',
 	cash_selling_rate: '现钞卖出价',
 	conversion_rate: '中行折算价',
-	time: '报价时间'
+	time: ['报价时间', '发布时间']
 }
