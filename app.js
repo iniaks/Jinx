@@ -4,6 +4,7 @@ import logger from 'morgan'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import http from 'http'
+import cors from 'cors'
 // router
 import index from './routes/index'
 import users from './routes/users'
@@ -11,6 +12,8 @@ import exchange from './routes/exchange'
 import {ACCESS_HEADERS} from './model/access.js'
 
 const app = express()
+
+app.user(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -34,14 +37,13 @@ app.use((req, res, next) => {
 })
 
 // allow CORS
-app.all('*', (req, res, next) => {
-	res.header("Access-Control-Allow-Origin", "*")
-	res.header("Access-Control-Allow-Headers", ACCESS_HEADERS.join(','))
-	res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS")
-	res.header("X-Powered-By",' 3.2.1')
-	res.header("Content-Type", "application/json;charset=utf-8")
-	next();
-})
+// app.all('*', (req, res, next) => {
+// 	res.header("Access-Control-Allow-Origin", "*")
+// 	res.header("Access-Control-Allow-Headers", ACCESS_HEADERS.join(','))
+// 	res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS")
+// 	res.header("Content-Type", "application/json;charset=utf-8")
+// 	next();
+// })
 
 // error handler
 app.use((err, req, res, next) => {
