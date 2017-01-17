@@ -13,7 +13,7 @@ import {ACCESS_HEADERS} from './model/access.js'
 
 const app = express()
 
-app.user(cors())
+app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
