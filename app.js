@@ -8,6 +8,7 @@ import http from 'http'
 import index from './routes/index'
 import users from './routes/users'
 import exchange from './routes/exchange'
+import {ACCESS_HEADERS} from './model/access.js'
 
 const app = express()
 
@@ -35,7 +36,7 @@ app.use((req, res, next) => {
 // allow CORS
 app.all('*', (req, res, next) => {
 	res.header("Access-Control-Allow-Origin", "*")
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Headers")
+	res.header("Access-Control-Allow-Headers", ACCESS_HEADERS.join(','))
 	res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS")
 	res.header("X-Powered-By",' 3.2.1')
 	res.header("Content-Type", "application/json;charset=utf-8")
