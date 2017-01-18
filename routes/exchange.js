@@ -12,8 +12,10 @@ const grasp = (res, method, url, resolve) => {
 	superagent(method, url).end((error, response) => {
 		if (error) {
 			throw(error)
+			res.send({status: 400, msg: 'timeout'})
+		} else {
+			res.send({status: 200, items: resolve(response.text)})
 		}
-		res.send({status: 200, items: resolve(response.text)})
 	})
 }
 
