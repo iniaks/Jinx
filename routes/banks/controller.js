@@ -58,7 +58,7 @@ const abc = res => {
 			buying_rate: parseFloat(currency.BuyingPrice).toFixed(2),
 			selling_rate: parseFloat(currency.SellPrice).toFixed(2),
 			time: currency.PublishTime,
-			cash_buying_rate: currency.CashBuyingPrice.toFixed(2)
+			cash_buying_rate: parseFloat(currency.CashBuyingPrice).toFixed(2)
 		}
 		result.push(record)
 	})
