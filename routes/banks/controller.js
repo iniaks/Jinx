@@ -73,8 +73,8 @@ const ccb = res => {
 		source.ReferencePriceSettlements.ReferencePriceSettlement.forEach(currency => {
 			let record = {
 				name: CCB_CURRENCY_NAME_MAP[parseInt(currency.$.name)],
-				buying_rate: currency.BidRateOfCcy[0]*100.toFixed(2),
-				selling_rate: currency.OfrRateOfCcy[0]*100.toFixed(2),
+				buying_rate: (currency.BidRateOfCcy[0]*100).toFixed(2),
+				selling_rate: (currency.OfrRateOfCcy[0]*100).toFixed(2),
 				cash_buying_rate: currency.BidRateOfCash[0],
 				cash_selling_rate: currency.OfrRateOfCash[0],
 				time: currency.LstPr_Dt + ' ' + currency.LstPr_Tm
