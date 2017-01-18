@@ -55,10 +55,10 @@ const abc = res => {
 	data_table.Data.Table.forEach((currency) => {
 		let record = {
 			name: utils.mapProp(CURRENCY_NAME_MAP, currency.CurrName),
-			buying_rate: currency.BuyingPrice,
-			selling_rate: currency.SellPrice,
+			buying_rate: currency.BuyingPrice.toFixed(2),
+			selling_rate: currency.SellPrice.toFixed(2),
 			time: currency.PublishTime,
-			cash_buying_rate: currency.CashBuyingPrice
+			cash_buying_rate: currency.CashBuyingPrice.toFixed(2)
 		}
 		result.push(record)
 	})
@@ -73,8 +73,8 @@ const ccb = res => {
 		source.ReferencePriceSettlements.ReferencePriceSettlement.forEach(currency => {
 			let record = {
 				name: CCB_CURRENCY_NAME_MAP[parseInt(currency.$.name)],
-				buying_rate: currency.BidRateOfCcy[0],
-				selling_rate: currency.OfrRateOfCcy[0],
+				buying_rate: currency.BidRateOfCcy[0]*100,
+				selling_rate: currency.OfrRateOfCcy[0]*100,
 				cash_buying_rate: currency.BidRateOfCash[0],
 				cash_selling_rate: currency.OfrRateOfCash[0],
 				time: currency.LstPr_Dt + ' ' + currency.LstPr_Tm
