@@ -4,6 +4,7 @@ import logger from 'morgan'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import http from 'http'
+import cors from 'cors'
 // router
 import index from './routes/index'
 import users from './routes/users'
@@ -12,7 +13,7 @@ import exchange from './routes/exchange'
 
 const app = express()
 
-// app.use(cors())
+app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
