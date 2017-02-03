@@ -59,7 +59,7 @@ export const CURRENCY_NAME_MAP = {
 
 export const CURRENCY_PROPS_MAP = {
 	name: ['币种', '货币名称', '交易币'],
-	unit: ['交易单位', '交易单位', '交易币单位'],
+	unit: ['交易单位', '交易单位', '交易币单位', '单位'],
 	base_currency: '基本币',
 	middle_price: '中间价',
 	buying_rate: ['现汇买入价', '买入汇率'],
