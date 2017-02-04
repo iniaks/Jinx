@@ -1,7 +1,7 @@
 export const BANK_NAME_MAP = {
-	BOC: {name: '中国银行外汇牌价', url: 'http://www.boc.cn/sourcedb/whpj/index.html', method: 'GET'},
-	ABC: {name: '农业银行外汇牌价', url: 'http://ewealth.abchina.com/app/data/api/DataService/ExchangeRateV2', method: 'GET'},
 	ICBC: {name: '工商银行外汇牌价', url: 'http://www.icbc.com.cn/ICBCDynamicSite/Optimize/Quotation/QuotationListIframe.aspx', method: 'POST'},
+	ABC: {name: '农业银行外汇牌价', url: 'http://ewealth.abchina.com/app/data/api/DataService/ExchangeRateV2', method: 'GET'},
+	BOC: {name: '中国银行外汇牌价', url: 'http://www.boc.cn/sourcedb/whpj/index.html', method: 'GET'},
 	CCB: {name: '建设银行外汇牌价', url: 'http://forex.ccb.com/cn/home/news/jshckpj_new.xml', method: 'GET'},
 	BCM: {name: '交通银行外汇牌价', url: 'http://www.bankcomm.com/BankCommSite/zonghang/cn/whpj/foreignExchangeSearch_Cn.jsp', method: 'GET'},
 	CMB: {name: '招商银行外汇牌价', url: 'http://fx.cmbchina.com/Hq/', method: 'GET'}
