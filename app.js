@@ -1,63 +1,49 @@
 import express from 'express'
-import path from 'path'
-import logger from 'morgan'
+import http from 'http'
+import utils from './config/utils'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
-import http from 'http'
 import cors from 'cors'
-// router
-import index from './routes/index'
-import users from './routes/users'
-import exchange from './routes/exchange'
-// import {ACCESS_HEADERS} from './model/access.js'
+import {routes} from './config/routes'
 
 const app = express()
 
 app.use(cors())
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'jade')
-// // 
-app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(cookieParser())
 
-app.use('/', index)
-app.use('/users', users)
-app.use('/exchange', exchange)
-
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
-  let err = new Error('Not Found')
-  err.status = 404
-  next(err)
+routes.forEach(route => {
+	app.use(route.path, route.component)
 })
 
-// allow CORS
-// app.all('*', (req, res, next) => {
-// 	res.header("Access-Control-Allow-Origin", "*")
-// 	res.header("Access-Control-Allow-Headers", ACCESS_HEADERS.join(','))
-// 	res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS")
-// 	res.header("Content-Type", "application/json;charset=utf-8")
-// 	next();
-// })
-
 // error handler
-app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
-
-  // render the error page
-  res.status(err.status || 500)
-  res.render('error')
+app.use(function(req, res, next) {
+	let err = new Error('Not Found')
+	err.status = 404
+	res.json({status: err.status, msg: 'Invalid Api'})
 })
 
 /**
  * Create HTTP server.
  */
+
+let port = utils.normalizePort(3000)
+app.set('port', port)
+
 const server = http.createServer(app)
-server.listen(3000)
+
+server.listen(port)
+server.on('error', utils.onError)
+server.on('listening', utils.onListening)
+
+// 
+// app.use(function(err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render('error');
+// });

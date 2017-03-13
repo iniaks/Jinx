@@ -1,2 +1,2 @@
-# Jinx
+# Express Backend API
 Nodejs + Express
