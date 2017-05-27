@@ -14,7 +14,7 @@ const HXB = res => {
 			if (_prop) {
 				_prop === 'name'
 					? record[_prop] = utils.mapProp(CURRENCY_NAMES, $(value).text())
-					: record[_prop] = $(value).text()
+					: record[_prop] = $(value).text().replace(/^\s+|\s+$/g,"")
 			}
 		})
 		result.push(record)

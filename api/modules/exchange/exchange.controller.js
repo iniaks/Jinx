@@ -26,10 +26,10 @@ const compare = (banks, result) => {
 	let best_buying = banks[0]
 	let best_selling = banks[0]
 	for (let bank_name in result) {
-		if (result[bank_name].buying_rate > result[best_buying].buying_rate) {
+		if (parseFloat(result[bank_name].buying_rate) > parseFloat(result[best_buying].buying_rate)) {
 			best_buying = bank_name
 		}
-		if (result[bank_name].selling_rate < result[best_selling].selling_rate) {
+		if (parseFloat(result[bank_name].selling_rate) < parseFloat(result[best_selling].selling_rate)) {
 			best_selling = bank_name
 		}
 	}
