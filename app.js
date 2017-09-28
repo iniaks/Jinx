@@ -1,6 +1,5 @@
 import express from 'express'
 import http from 'http'
-import utils from './config/utils'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import cors from 'cors'
@@ -28,7 +27,7 @@ app.use(function(req, res, next) {
  * Create HTTP server.
  */
 
-let port = utils.normalizePort(3000)
+let port = normalizePort(3000)
 app.set('port', port)
 
 const server = http.createServer(app)
@@ -37,13 +36,58 @@ server.listen(port)
 server.on('error', utils.onError)
 server.on('listening', utils.onListening)
 
-// 
-// app.use(function(err, req, res, next) {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
+function normalizePort(val) {
+	let port = parseInt(val, 10)
 
-//   // render the error page
-//   res.status(err.status || 500);
-//   res.render('error');
-// });
+	if (isNaN(port)) {
+    // named pipe
+		return val
+	}
+
+	if (port >= 0) {
+    // port number
+		return port
+	}
+
+	return false
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+    if (error.syscall !== 'listen') {
+      throw error
+    }
+
+    let bind = typeof port === 'string'
+      ? 'Pipe ' + port
+      : 'Port ' + port
+
+  // handle specific listen errors with friendly messages
+	switch (error.code) {
+		case 'EACCES':
+			console.error(bind + ' requires elevated privileges')
+			process.exit(1)
+			break
+		case 'EADDRINUSE':
+			console.error(bind + ' is already in use')
+			process.exit(1)
+			break
+		default:
+			throw error
+	}
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+	let addr = server.address()
+	let bind = typeof addr === 'string'
+		? 'pipe ' + addr
+		: 'port ' + addr.port
+	debug('zuber-server:server')('Listening on ' + bind)
+}
