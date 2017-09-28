@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import {routes} from './config/routes'
+import debug from 'debug'
 
 const app = express()
 
