@@ -33,8 +33,8 @@ app.set('port', port)
 const server = http.createServer(app)
 
 server.listen(port)
-server.on('error', utils.onError)
-server.on('listening', utils.onListening)
+server.on('error', onError)
+server.on('listening', onListening)
 
 function normalizePort(val) {
 	let port = parseInt(val, 10)
