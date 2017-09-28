@@ -1,6 +1,6 @@
 {
   "apps" : [{
-    "name"        : "Monitor",
+    "name"        : "exchange",
     "script"      : "./app.js",
     "watch"       : true,
     "exec_interpreter" : "babel-node",

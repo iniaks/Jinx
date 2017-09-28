@@ -28,7 +28,7 @@ app.use(function(req, res, next) {
  * Create HTTP server.
  */
 
-let port = normalizePort(3000)
+let port = normalizePort(5257)
 app.set('port', port)
 
 const server = http.createServer(app)

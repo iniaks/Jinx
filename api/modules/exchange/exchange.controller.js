@@ -42,8 +42,8 @@ export default {
 	set: (record, bank, currency) => {
 		PriceModel.findOne({name: currency}, (err, doc) => {
 			let _bank = bank.toUpperCase()
+			console.info(bank, doc)
 			if (doc) {
-				console.info(bank, doc[_bank])
 				if (!doc[_bank]) {
 					doc[_bank] = []
 				}
@@ -53,7 +53,7 @@ export default {
 					doc[_bank].splice(2, doc[_bank].length - 1)
 				}
 				doc.save(err => {
-					console.log(err)
+					console.info(_bank, err)
 				})
 			} else {
 				let _currency = new PriceModel({
@@ -71,7 +71,6 @@ export default {
 			if (doc) {
 				banks.forEach(bank => {
 					let _bank = bank.toUpperCase()
-					console.info(_bank, doc)
 					result[_bank] = serialize(doc[_bank])
 				})
 				callback(compare(banks, result))
