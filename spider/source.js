@@ -59,7 +59,7 @@ export const BANK_SOURCES = {
 	},
 	CITIC: {
 		name: '中信银行',
-		url: 'http://www.ecitic.com/xml/ftp.txt',
+		url: 'https://etrade.citicbank.com/portalweb/cms/getForeignExchRate.htm',
 		method: 'GET',
 		resolve: CITIC
 	},

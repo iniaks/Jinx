@@ -1,33 +1,19 @@
-import {CITIC_NAMES} from '../map'
-
-const parse = data => {
-	return parseFloat(data, 10)
-}
-
-const mapName = code => {
-	let name = ''
-	CITIC_NAMES.forEach(currency => {
-		if (code == currency.code) {
-			name = currency.name
-		}
-	})
-	return name
-}
-
-const ratio = 100000
+import utils from '../../config/utils'
+import {CURRENCY_NAMES} from '../map'
 
 const CITIC = res => {
 	let result = []
-	let data_array = res.replace(/\s/g, '').split('A')
+	let data_source = JSON.parse(res)
+	let data_array = data_source.content.resultList
 	data_array.forEach(source => {
 		if (source) {
 			let record = {
-				time: source.substring(1, 13),
-				name: mapName(source.substring(15, 17)),
-				buying_rate: parse(source.substring(29, 41)) / ratio,
-				cash_buying_rate: parse(source.substring(17, 29)) / ratio,
-				selling_rate: parse(source.substring(41, 53)) / ratio,
-				cash_selling_rate: parse(source.substring(65, 77)) / ratio
+				time: source.quotePriceDate + source.quotePriceTime,
+				name: utils.mapProp(CURRENCY_NAMES, source.curName),
+				buying_rate: parseFloat(source.cstexcBuyPrice),
+				cash_buying_rate: parseFloat(source.cstpurBuyPrice),
+				selling_rate: parseFloat(source.cstexcSellPrice),
+				cash_selling_rate: parseFloat(source.cstpurSellPrice)
 			}
 			if (record.name != '') {
 				result.push(record)
