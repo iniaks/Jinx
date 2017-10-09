@@ -42,7 +42,7 @@ export default {
 	set: (record, bank, currency) => {
 		PriceModel.findOne({name: currency}, (err, doc) => {
 			let _bank = bank.toUpperCase()
-			console.info(bank, doc)
+			// console.info(bank, doc)
 			if (doc) {
 				if (!doc[_bank]) {
 					doc[_bank] = []
@@ -50,7 +50,7 @@ export default {
 				doc[_bank].unshift(record)
 				// future canceled
 				if (doc[_bank].length > 2) {
-					doc[_bank].splice(2, doc[_bank].length - 1)
+					doc[_bank].splice(2, doc[_bank].length - 2)
 				}
 				doc.save(err => {
 					console.info(_bank, err)
