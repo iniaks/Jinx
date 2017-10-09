@@ -21,6 +21,7 @@ router.get('/', (req, res, next) => {
 	// 	})
 	// 	res.send({code: 200, result: result})
 	// })
+	
 	exchangeController.get(currency, banks, result => {
 		res.json({
 			status: 200,

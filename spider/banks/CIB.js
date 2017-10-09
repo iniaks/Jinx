@@ -19,7 +19,6 @@ const CIB = res => {
 		})
 		result.push(record)
 	})
-	console.log(result)
 	return result
 }
 
