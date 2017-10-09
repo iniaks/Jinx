@@ -6,7 +6,7 @@ import {BANK_SOURCES} from '../../../spider/source'
 
 let router = express.Router()
 
-// task.checkExchange()
+task.checkExchange()
 
 router.get('/', (req, res, next) => {
 	let currency = req.query.currency
