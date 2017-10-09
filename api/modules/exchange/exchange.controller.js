@@ -42,7 +42,7 @@ export default {
 	set: (record, bank, currency) => {
 		PriceModel.findOne({name: currency}, (err, doc) => {
 			let _bank = bank.toUpperCase()
-
+			console.log(_bank, 'seeking...')
 			if (doc) {
 				if (!doc[_bank]) {
 					doc[_bank] = []
